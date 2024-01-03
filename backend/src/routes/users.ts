@@ -47,7 +47,7 @@ router.post(
             res.cookie("auth_token", token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 86400000,
+                maxAge: 86400000, // dựa và cái expresIn: '1d' 1 ngày 86400000 mili giây
             });
             return res.sendStatus(200);
         } catch (error) {
