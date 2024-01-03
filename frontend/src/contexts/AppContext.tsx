@@ -23,7 +23,7 @@ export const AppContextProvider = ({
             value={{
                 showToast: (toastMessage) => {
                     // console.log(toastMessage);
-                    setToast(toastMessage)
+                    setToast(toastMessage);
                 },
             }}
         >
