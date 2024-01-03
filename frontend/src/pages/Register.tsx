@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import * as apiClient from "../api-client";
+import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export type RegisterFormData = {
     firstName: string;
@@ -11,6 +13,9 @@ export type RegisterFormData = {
 };
 
 const Register = () => {
+    const navigate = useNavigate();
+    const { showToast } = useAppContext();
+
     // useForm là một hook từ thư viện react-hook-form giúp quản lý trạng thái của form.
     // RegisterFormData là một kiểu TypeScript mô tả cấu trúc dữ liệu mà form sẽ nhận được.
     // register: Một hàm được sử dụng để kết nối các trường nhập liệu trong form với react-hook-form.
@@ -26,16 +31,23 @@ const Register = () => {
 
     const mutation = useMutation(apiClient.register, {
         onSuccess: () => {
-            console.log("Registration successfully!");
+            showToast({
+                message: "Registration successfully!",
+                type: "SUCCESS",
+            });
+            navigate("/");
         },
         onError: (error: Error) => {
-            console.log(error.message);
+            showToast({
+                message: error.message,
+                type: "ERROR",
+            });
         },
     });
 
     // onSubmit: Là một hàm được gọi khi form được submit, in ra dữ liệu được nhập từ form vào console.
     const onSubmit = handleSubmit((data) => {
-        mutation.mutate(data)
+        mutation.mutate(data);
     });
     return (
         // Dùng onSubmit để xử lý sự kiện submit form.
