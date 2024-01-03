@@ -100,6 +100,17 @@ Xây dựng User Registration API
   + Lưu token đó vào cookie
   + Cuối cùng mọi thứ thành công hết trả về status 200
 
+Xây dựng Login API
+- routes
+ + /api/auth/login;
+ + cũng đã giải thích sẵn trong file và nó cũng tương tự register
+ + cũng validate, sau đó so sánh email và password gửi từ (req.body) với dữ liệu trong DB
+ + đối với email check có tồn tại hay không, đối với password dịch ngược từ password bcrypt ra so sánh password
+ + xong tạo token
+ + lưu vào cookie
+ + có lỗi catch sẽ bắt
+
+Xây dựng User Registration Form
 
 
 
