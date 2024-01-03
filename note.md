@@ -112,6 +112,12 @@ Xây dựng Login API
 
 Xây dựng User Registration Form
 
+- Xây dựng Form đăng ký
+- Học các sử dụng react-hook-form
+- tìm hiểu register, watch, handleSubmit, formState: { errors }
+- tìm hiểu mutation
+- tìm hiểu kết nối Frontend tới backend (file api-client.ts)
+
 
 
 
