@@ -5,6 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const register = async (formData: RegisterFormData) => {
     const response = await fetch(`${API_BASE_URL}/api/users/register`, {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
@@ -26,4 +27,16 @@ export const register = async (formData: RegisterFormData) => {
     Sử dụng response.json() để chuyển đổi nội dung phản hồi từ dạng JSON sang đối tượng JavaScript.
     Kiểm tra xem response.ok có giá trị true hay false. Nếu không, nghĩa là có lỗi, thì ném một lỗi với thông báo lỗi từ phản hồi.
     */
+};
+
+export const validateToken = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
+        credentials: "include",
+    });
+
+    if (!response.ok) {
+        throw new Error("Token invalid");
+    }
+
+    return response.json();
 };
