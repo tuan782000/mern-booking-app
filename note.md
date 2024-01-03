@@ -118,6 +118,9 @@ Xây dựng User Registration Form
 - tìm hiểu mutation
 - tìm hiểu kết nối Frontend tới backend (file api-client.ts)
 
+Xây dựng 
 
+- Toast
+- Bọc dự án context Provider
 
 
