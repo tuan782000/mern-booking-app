@@ -66,5 +66,41 @@ set up trong file .env
 MONGODB_CONNECTION_STRING=mongodb+srv://tuannt:BaD2IoseKsFIrcDx@cluster0.vqjgd.mongodb.net/?retryWrites=true&w=majority 
 ```
 
+Xây dựng giao diện
+- Build Componets (Header Hero Footer)
+- Build Layouts
+- Tiến hành import từng cái components vào layout
+- Layout là child của App.
+
+Thực hiện truyền props từ App xuống Layout
+
+Xây dựng giao diện và tính năng Register.
+
+Logic Register:
+
+Form -- gủi dữ liệu (POST/auth/register) -> Tiến hành nhận password chuyển đổi bâm nhỏ với (Passoword Encrypted). Sau đó lưu lại dữ liệu đó vào trong Database. -> Cuối cùng trả về Http Cookie với JWT cho trình duyệt
+
+JWT: JSON WEB TOKEN trả lại cho trình duyệt cùng với cookie http
+
+Đoạn mã JWT chứng minh là người dùng đó đã xác thực với hệ thống và thường lưu trữ trên trình duyệt.
+
+Khi người dùng thực hiện 1 tác vụ yêu cầu nào đó với các API có sự hạn chế quyền truy cập (JWT token sẽ phát huy tác dụng) ví dụ: thêm xem xóa sửa
+
+Xây dựng User Registration API
+- models
+  + user.ts (đại diện cho thực thể người dùng)
+  + định nghĩa type cho thực thể (vì đang TS code). Và đây cũng sẽ là các thông tin của 1 User
+  + Tạo UserSchema (Schema xác định những thuộc tính được lưu trữ dựa trên user)
+- routes
+  + /api/users/register
+  + các dòng check sẽ là thư viện validate của express giúp kiểm tra dữ liệu, đoạn này const errors = validationResult(req); là các lỗi sẽ được lưu vào biến errors. Nếu có tồn tại errors nó sẽ chạy dòng if (!errors.isEmpty()) trả về 1 bad request, kèm theo đối tượng chứa message và mảng danh sách các lỗi
+  + Trước khi đăng ký phải trải qua kiểm tra xem email từ (req.body.email gửi lên) đó có tồn tại trong DB hay là không bằng hàm findOne của MongoDB.
+  + Nếu tồn tại trả về Bad request 400. Còn lại chưa tồn tại sẽ đi đến bước đăng ký và dùng save của mongo để lưu lại
+  + Sau đó tiến hành tạo token.
+  + Lưu token đó vào cookie
+  + Cuối cùng mọi thứ thành công hết trả về status 200
+
+
+
 
 
