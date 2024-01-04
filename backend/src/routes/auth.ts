@@ -25,6 +25,12 @@ router.post(
             return res.status(400).json({ message: errors.array() });
         }
         // sử dụng cú pháp destructuring để lấy ra email và password từ req.body gán vào biến email và password
+        // destructuring có quan trọng thứ tự của biến với key value của object
+        /*
+            const numbers = ["one","three", "two"]
+            const [one, two] = numbers;
+            consol.log(two) // three
+        */ 
         const { email, password } = req.body;
 
         try {
